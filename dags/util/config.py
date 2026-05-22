@@ -57,6 +57,6 @@ database_table_name = "west_african_agri_metrics_wide"
 start_year = 1999
 end_year = 2022
 
-json_folder = "/opt/airflow/tmp/raw_data.json"
+# json_folder = "/opt/airflow/tmp/raw_data.json"
 
 postgres_conn_id = "postgres_default"
