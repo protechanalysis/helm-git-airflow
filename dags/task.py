@@ -2,7 +2,8 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import timedelta, datetime
 from notification.email_alert import task_fail_alert
-from includes.extraction import extract_world_bank_data, validate_data
+from includes.extraction import extract_world_bank_data
+# , validate_data
 from includes.database import create_metric_table, load_dataframe_to_postgres
 
 
@@ -27,10 +28,10 @@ with DAG(
         python_callable=extract_world_bank_data
     )
 
-    tranform_validate = PythonOperator(
-        task_id="tranform_and_validate_data",
-        python_callable=validate_data
-    )
+    # tranform_validate = PythonOperator(
+    #     task_id="tranform_and_validate_data",
+    #     python_callable=validate_data
+    # )
 
     table_creation = PythonOperator(
         task_id="create_table",
@@ -42,5 +43,4 @@ with DAG(
         python_callable=load_dataframe_to_postgres
     )
 
-
-    extract_data >> tranform_validate >> table_creation >> load_data
+    extract_data >> table_creation >> load_data

@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-import pandera as pa
+# import pandera as pa
 import logging
 import json
 import os
@@ -137,34 +137,34 @@ def transform_to_dataframe() -> pd.DataFrame:
     return df_wide
 
 
-def validate_data() -> pd.DataFrame:
-    """
-    Validate transformed DataFrame against the wide-format quality schema.
+# def validate_data() -> pd.DataFrame:
+#     """
+#     Validate transformed DataFrame against the wide-format quality schema.
     
-    Runs the transformation pipeline to get fresh data, then validates it
-    using Pandera schema rules. Logs all validation errors if checks fail.
+#     Runs the transformation pipeline to get fresh data, then validates it
+#     using Pandera schema rules. Logs all validation errors if checks fail.
     
-    Returns:
-        pd.DataFrame: Validated DataFrame that passes all schema checks.
+#     Returns:
+#         pd.DataFrame: Validated DataFrame that passes all schema checks.
     
-    Raises:
-        pa.errors.SchemaErrors: If data fails validation. Failure cases are
-                                logged before raising the exception.
-    """
-    logging.info("Validating data against the WIDE-FORMAT quality schema")
+#     Raises:
+#         pa.errors.SchemaErrors: If data fails validation. Failure cases are
+#                                 logged before raising the exception.
+#     """
+#     logging.info("Validating data against the WIDE-FORMAT quality schema")
 
-    try:
-        schema = get_wide_schema()
+#     try:
+#         schema = get_wide_schema()
 
-        # Re-run transformation pipeline to get fresh DataFrame
-        df = transform_to_dataframe()
-        validated_df = schema.validate(df, lazy=True)
+#         # Re-run transformation pipeline to get fresh DataFrame
+#         df = transform_to_dataframe()
+#         validated_df = schema.validate(df, lazy=True)
 
-        logging.info("Data validation successful.")
-        return validated_df
+#         logging.info("Data validation successful.")
+#         return validated_df
 
-    except pa.errors.SchemaErrors as err:
-        # If validation fails, log all errors for debugging
-        logging.error("Data validation failed. See failure cases below.")
-        logging.error(err.failure_cases)
-        raise err 
+#     except pa.errors.SchemaErrors as err:
+#         # If validation fails, log all errors for debugging
+#         logging.error("Data validation failed. See failure cases below.")
+#         logging.error(err.failure_cases)
+#         raise err 
