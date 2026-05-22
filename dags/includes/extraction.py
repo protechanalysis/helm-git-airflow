@@ -8,7 +8,7 @@ from time import sleep
 from datetime import datetime
 from pathlib import Path 
 from util.config import ecowas_country, indicators, start_year, end_year, indicators_column_names, json_folder
-from includes.validation import get_wide_schema
+# from includes.validation import get_wide_schema
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
