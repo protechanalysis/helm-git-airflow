@@ -4,7 +4,7 @@ import os
 import pandas as pd
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from util.config import postgres_conn_id, indicators_column_names, database_table_name, json_folder
-from includes.extraction import validate_data
+from includes.extraction import transform_to_dataframe
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 
@@ -69,7 +69,7 @@ def load_dataframe_to_postgres() -> None:
     Raises:
         Exception: If database operations fail during staging, copy, or merge.
     """
-    df = validate_data()
+    df = transform_to_dataframe()
     try:
         # Open Postgres connection
         hook = PostgresHook(postgres_conn_id=postgres_conn_id)
